@@ -25,7 +25,7 @@ pipeline {
     REPOSITORY = "${DOCKER_HUB_USR}/anchorectl-test"
     TAG = "build-${BUILD_NUMBER}"
     //
-    IMAGE = ${REGISTRY}/${REPOSITORY}:${TAG}
+    IMAGE = "${REGISTRY}/${REPOSITORY}:${TAG}"
     //
   } // end environment
 

@@ -28,6 +28,12 @@ pipeline {
     //
     IMAGE = "${REGISTRY}/${REPOSITORY}:${TAG}"
     //
+    ANCHORECTL_URL = credentials("Anchorectl_Url")
+    ANCHORECTL_USERNAME = credentials("Anchorectl_Username")
+    ANCHORECTL_PASSWORD = credentials("Anchorectl_Password")
+    // change ANCHORECTL_FAIL_BASED_ON_RESULTS to "true" if you want to break on policy violations
+    ANCHORECTL_FAIL_BASED_ON_RESULTS = "false"
+    //
   } // end environment
 
   agent any
@@ -68,13 +74,6 @@ pipeline {
     } // end stage "Build Image"
     
     stage('Analyze Image w/ anchorectl') {
-      environment {
-        ANCHORECTL_URL = credentials("Anchorectl_Url")
-        ANCHORECTL_USERNAME = credentials("Anchorectl_Username")
-        ANCHORECTL_PASSWORD = credentials("Anchorectl_Password")
-        // change ANCHORECTL_FAIL_BASED_ON_RESULTS to "true" if you want to break on policy violations
-        ANCHORECTL_FAIL_BASED_ON_RESULTS = "false"
-      }
       steps {
         script {
           sh """
@@ -138,13 +137,6 @@ pipeline {
     } // end stage "analyze with anchorectl"
 
     stage('Pull SBOM') {
-      environment {
-        ANCHORECTL_URL = credentials("Anchorectl_Url")
-        ANCHORECTL_USERNAME = credentials("Anchorectl_Username")
-        ANCHORECTL_PASSWORD = credentials("Anchorectl_Password")
-        // change ANCHORECTL_FAIL_BASED_ON_RESULTS to "true" if you want to break on policy violations
-        ANCHORECTL_FAIL_BASED_ON_RESULTS = "false"
-      }
       // Grab SBOM from Anchore API and format it as needed
       steps {
         sh """

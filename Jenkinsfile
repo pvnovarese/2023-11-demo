@@ -1,5 +1,6 @@
 // requires anchorectl
 // requires anchore enterprise 
+// requires jq
 //
 pipeline {
   environment {

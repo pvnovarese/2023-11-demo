@@ -149,7 +149,7 @@ pipeline {
         sh """
           ### need to reset PATH since Jenkins forgets between stages
           export PATH="$HOME/.local/bin/:$PATH"          
-          anchorectl image sbom -o syft-json ${IMAGE} | jq -r '.artifacts[] | [ .type, .name, .metadata.vendor, .metadata.version, .cpes[0]  ] | @csv' > components.csv
+          anchorectl image sbom -o syft-json ${IMAGE} | jq -r '.artifacts[] | [ .type, .name, .metadata.vendor, .metadata.author, .metadata.authors, .metadata.homepage, .metadata.version, .cpes[0]  ] | @csv' > components.csv
         """
       } // end steps
     } // end stage "clean up"

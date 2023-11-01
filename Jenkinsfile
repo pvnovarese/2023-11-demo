@@ -149,7 +149,7 @@ pipeline {
         sh """
           ### need to reset PATH since Jenkins forgets between stages
           export PATH="$HOME/.local/bin/:$PATH"          
-          cat "Type,Name,Metadata_Vendor,Metadata_Author,Metadata_Authors,Metadata_Homepage,Version,CPE" > components.csv
+          echo "Type,Name,Metadata_Vendor,Metadata_Author,Metadata_Authors,Metadata_Homepage,Version,CPE" > components.csv
           anchorectl image sbom -o syft-json ${IMAGE} | jq -r '.artifacts[] | [ .type, .name, .metadata.vendor, .metadata.author, .metadata.authors, .metadata.homepage, .metadata.version, .cpes[0]  ] | @csv' >> components.csv
         """
       } // end steps

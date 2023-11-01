@@ -138,7 +138,9 @@ pipeline {
     stage('Pull SBOM') {
       // Grab SBOM from Anchore API and format it as needed
       steps {
-        sh 'anchorectl image sbom -o syft-json ${IMAGE} | jq -r '.artifacts[] | [ .type, .name, .metadata.vendor, .metadata.version, .cpes[0]  ] | @csv' > components.csv' 
+        sh """
+          anchorectl image sbom -o syft-json ${IMAGE} | jq -r '.artifacts[] | [ .type, .name, .metadata.vendor, .metadata.version, .cpes[0]  ] | @csv' > components.csv
+        """
       } // end steps
     } // end stage "clean up"
     

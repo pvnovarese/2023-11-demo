@@ -1,4 +1,4 @@
-FROM docker.io/opensuse/tumbleweed:latest
+FROM docker.io/opensuse/leap:15.5
 
 LABEL name="2023-11-demo"
 LABEL maintainer="pvn@novarese.net"

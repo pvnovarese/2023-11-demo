@@ -80,7 +80,8 @@ pipeline {
           sh """
             ### install anchorectl 
             curl -sSfL  https://anchorectl-releases.anchore.io/anchorectl/install.sh  | sh -s -- -b $HOME/.local/bin v4.9.0
-            export PATH="$HOME/.local/bin/:$PATH"          
+            export PATH="$HOME/.local/bin/:$PATH"
+            anchorectl -vv system status
             #
             ### actually add the image to the queue to be scanned
             
